@@ -20,25 +20,17 @@ const playlistEl = document.getElementById("playlist");
 // === Автоматическая загрузка треков ===
 async function loadTrackList() {
   try {
-    const response = await fetch("assets/audio");
-    const text = await response.text();
-
-    // GitHub Pages возвращает HTML-директорию, парсим все .mp3
-    const matches = [...text.matchAll(/href="([^"]+\.mp3)"/g)];
-    tracks = matches.map(m => ({
-      title: decodeURIComponent(m[1].split("/").pop().replace(".mp3", "")),
-      artist: "Local",
-      src: `assets/audio/${m[1]}`
-    }));
-
-    if (tracks.length === 0) {
-      playlistEl.innerHTML = `<p style="text-align:center;color:#777;">Нет треков в /assets/audio/</p>`;
+    const response = await fetch("assets/tracks.json");
+    tracks = await response.json();
+    if (!tracks.length) {
+      playlistEl.innerHTML = `<p style="text-align:center;color:#777;">Нет треков</p>`;
       return;
     }
     renderPlaylist();
     loadTrack(0);
   } catch (err) {
     console.error("Ошибка загрузки треков:", err);
+    playlistEl.innerHTML = `<p style="text-align:center;color:#777;">Ошибка загрузки треков</p>`;
   }
 }
 
