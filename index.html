@@ -1,0 +1,45 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>My Music (PWA)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 16px; }
+    header { display:flex; gap:8px; align-items:center; }
+    button { padding:8px 12px; border-radius:8px; border:1px solid #ccc; }
+    ul { list-style: none; padding: 0; margin: 12px 0; }
+    li { padding: 8px; border-bottom: 1px solid #eee; display:flex; align-items:center; gap:8px; }
+    .title { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .controls { display:flex; gap:8px; margin-top:10px; align-items:center; }
+    .progress { width: 100%; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="margin:0">My Music</h1>
+    <input id="picker" type="file" accept="audio/*" multiple hidden />
+    <button id="add">Добавить треки</button>
+    <button id="install" style="display:none">Установить на экран</button>
+  </header>
+
+  <ul id="list"></ul>
+
+  <div class="controls">
+    <button id="prev">⏮︎</button>
+    <button id="play">▶️/⏸</button>
+    <button id="next">⏭︎</button>
+    <input id="seek" class="progress" type="range" min="0" max="100" value="0" />
+    <span id="time">00:00 / 00:00</span>
+  </div>
+
+  <audio id="audio" preload="metadata" playsinline></audio>
+
+  <script src="idb.js"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
