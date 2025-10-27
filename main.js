@@ -20,7 +20,7 @@ const playlistEl = document.getElementById("playlist");
 // === Автоматическая загрузка треков ===
 async function loadTrackList() {
   try {
-    const response = await fetch("assets/audio/");
+    const response = await fetch("assets/audio");
     const text = await response.text();
 
     // GitHub Pages возвращает HTML-директорию, парсим все .mp3
