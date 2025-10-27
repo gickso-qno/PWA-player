@@ -145,7 +145,7 @@ body {
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
-  color: #b3b3b3;
+  color: #250303;
   transition: background 0.3s, color 0.3s;
 }
 .track:hover {
