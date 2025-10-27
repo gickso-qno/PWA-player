@@ -34,6 +34,14 @@ async function loadTrackList() {
   }
 }
 
+// === Автоматическое переключение ===
+audio.addEventListener("ended", () => {
+  if (audio.loop) return;
+  currentIndex = (currentIndex + 1) % tracks.length;
+  loadTrack(currentIndex);
+  playTrack();
+});
+
 // === Вспомогательные функции ===
 function renderPlaylist() {
   playlistEl.innerHTML = tracks
