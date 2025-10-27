@@ -68,15 +68,20 @@ function prevTrack() {
 }
 
 // === Прогресс ===
-// === Автоматическое переключение ===
+audio.addEventListener("timeupdate",()=>{
+  if(!audio.duration) return;
+  const pct = (audio.currentTime/audio.duration)*100;
+  progressEl.style.width = `${pct}%`;
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+audio.addEventListener("loadedmetadata",()=>{
+  durationEl.textContent = formatTime(audio.duration);
+});
 audio.addEventListener("ended", () => {
   if (audio.loop) return;
   currentIndex = (currentIndex + 1) % tracks.length;
   loadTrack(currentIndex);
   playTrack();
-});
-audio.addEventListener("loadedmetadata",()=>{
-  durationEl.textContent = formatTime(audio.duration);
 });
 progressContainer.addEventListener("click",(e)=>{
   const w = progressContainer.clientWidth;
