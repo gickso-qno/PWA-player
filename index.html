@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PWA Player</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="player-container">
     <header class="player-header">
       <h1>PWA Player</h1>
-      <label class="btn-upload">
-        <i class="fa fa-folder-open"></i> Загрузить музыку
-        <input type="file" id="fileInput" webkitdirectory directory multiple hidden>
-      </label>
     </header>
-
-    <div class="cover">
-      <img src="assets/cover.jpg" alt="cover" id="cover-img" />
-    </div>
 
     <div class="track-info">
       <h2 id="track-title">Трек не выбран</h2>
@@ -27,9 +19,7 @@
 
     <div class="progress-container">
       <span id="current-time">0:00</span>
-      <div class="progress-bar">
-        <div id="progress"></div>
-      </div>
+      <div class="progress-bar"><div id="progress"></div></div>
       <span id="duration">0:00</span>
     </div>
 
