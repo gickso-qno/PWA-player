@@ -34,14 +34,6 @@ async function loadTrackList() {
   }
 }
 
-// === Автоматическое переключение ===
-audio.addEventListener("ended", () => {
-  if (audio.loop) return;
-  currentIndex = (currentIndex + 1) % tracks.length;
-  loadTrack(currentIndex);
-  playTrack();
-});
-
 // === Вспомогательные функции ===
 function renderPlaylist() {
   playlistEl.innerHTML = tracks
@@ -76,11 +68,12 @@ function prevTrack() {
 }
 
 // === Прогресс ===
-audio.addEventListener("timeupdate",()=>{
-  if(!audio.duration) return;
-  const pct = (audio.currentTime/audio.duration)*100;
-  progressEl.style.width = `${pct}%`;
-  currentTimeEl.textContent = formatTime(audio.currentTime);
+// === Автоматическое переключение ===
+audio.addEventListener("ended", () => {
+  if (audio.loop) return;
+  currentIndex = (currentIndex + 1) % tracks.length;
+  loadTrack(currentIndex);
+  playTrack();
 });
 audio.addEventListener("loadedmetadata",()=>{
   durationEl.textContent = formatTime(audio.duration);
